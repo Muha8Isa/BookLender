@@ -1,18 +1,27 @@
 package se.lexicon.MuhaIsa.BookLender.model;
 
-
+//
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
+@Entity
 public class Loan {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long loanId;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}) //REMOVE is not used here, because a record of a user loans should be recorded.
     private LibraryUser loanTaker;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private Book book;
     private LocalDate loanDate;
     private boolean concluded;
+
+    public Loan() {
+    }
 
     public Loan(LibraryUser loanTaker, Book book, LocalDate loanDate, boolean concluded) {
         this.loanTaker = loanTaker;

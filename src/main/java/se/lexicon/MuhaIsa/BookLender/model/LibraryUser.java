@@ -1,14 +1,28 @@
 package se.lexicon.MuhaIsa.BookLender.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
+@Entity
 public class LibraryUser {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private LocalDate regDate;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false,unique = true)
     private String email;
+
+    public LibraryUser() {
+    }
+
+    public LibraryUser(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     public LibraryUser(LocalDate regDate, String name, String email) {
         this.regDate = regDate;

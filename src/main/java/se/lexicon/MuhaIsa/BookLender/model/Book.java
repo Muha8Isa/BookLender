@@ -1,16 +1,30 @@
 package se.lexicon.MuhaIsa.BookLender.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.UUID;
 
+@Entity
 public class Book {
-    private int bookId;
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID bookId;
+    @Column(nullable = false)
     private String title;
     private boolean available;
     private boolean reserved;
     private int maxLoanDays;
     private BigDecimal finePerDay;
     private String description;
+
+    public Book() {
+    }
 
     public Book(String title, int maxLoanDays, BigDecimal finePerDay, String description) {
         this.title = title;
@@ -19,7 +33,7 @@ public class Book {
         this.description = description;
     }
 
-    public int getBookId() {
+    public UUID getBookId() {
         return bookId;
     }
 
