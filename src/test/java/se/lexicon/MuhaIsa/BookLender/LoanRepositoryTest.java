@@ -84,4 +84,10 @@ public class LoanRepositoryTest {
         Loan expectedData = currentLoan1;
         assertEquals(actualData, expectedData);
     } */
+  /* @Test
+   void findByConcludedTest() {
+       Optional<Loan> concluded = loanTest.findByConcluded(currentLoan1.isConcluded());
+       assertTrue(concluded.isPresent());
+   } */
+
 }

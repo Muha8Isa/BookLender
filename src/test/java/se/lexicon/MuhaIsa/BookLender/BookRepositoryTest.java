@@ -56,6 +56,20 @@ public class BookRepositoryTest {
         testBook.findAll().forEach(actualData::add);
         assertEquals(expectedData, actualData);
     }
+    
+    @Test
+    public void findByTitleContains() {
+        List<Book> listBook = testBook.findByTitleContains(addedBook1.getTitle());
+        assertFalse(listBook.isEmpty());
+        Book actualData = listBook.get(0);
+        Book expectedData = addedBook1;
+        assertEquals(actualData, expectedData);
+    }
+   /* @Test
+    public void findByAvailableTest() {
+        Optional<Book> availableBook = testBook.findByAvailable(addedBook1.isAvailable());
+        assertTrue(availableBook.isPresent());
+    } */
 
     @Test
     void deleteBookByIdTest() {
