@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface BookRepository extends CrudRepository<Book, UUID> {
-    Optional<Book> findByAvailable(boolean availableBook);
+public interface BookRepository extends CrudRepository<Book, String> {
+    List<Book> findByAvailable(boolean availableBook);
     Optional<Book> findByReserved(boolean reservedBook);
     List<Book> findByTitleContains(String title);
 }

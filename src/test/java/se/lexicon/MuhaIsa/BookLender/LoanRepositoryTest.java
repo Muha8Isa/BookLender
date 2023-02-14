@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.transaction.annotation.Transactional;
 import se.lexicon.MuhaIsa.BookLender.Repository.LoanRepository;
 import se.lexicon.MuhaIsa.BookLender.model.Book;
 import se.lexicon.MuhaIsa.BookLender.model.LibraryUser;
@@ -16,6 +17,8 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
+
+@Transactional
 public class LoanRepositoryTest {
 
     @Autowired
@@ -76,18 +79,19 @@ public class LoanRepositoryTest {
 
     // I will test finding the loan through Book ID.
 
-   /* @Test
+   @Test
     void findLoanByBookId() {
         Optional<Loan> optionalBook = loanTest.findByBookBookId(currentLoan1.getBook().getBookId());
-        assertTrue(optionalBook.isPresent()); // Problem is here: org.opentest4j.AssertionFailedError:  Expected :true, Actual   :false
+        assertTrue(optionalBook.isPresent());
         Loan actualData = optionalBook.get();
         Loan expectedData = currentLoan1;
         assertEquals(actualData, expectedData);
-    } */
-  /* @Test
+    }
+  @Test
    void findByConcludedTest() {
-       Optional<Loan> concluded = loanTest.findByConcluded(currentLoan1.isConcluded());
-       assertTrue(concluded.isPresent());
-   } */
+       List<Loan> concluded = loanTest.findByConcluded(false);
+       assertNotNull(concluded);
+       assertEquals(2, concluded.size());
+   }
 
 }

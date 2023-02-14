@@ -24,8 +24,8 @@ public class BookRepositoryTest {
 
     @BeforeEach
     public void setup() {
-        Book book1 = new Book("The Alchemist", 30, fine, "An allegorical novel tells the story of a guy searching for a treasure");
-        Book book2 = new Book("Treasure Island", 30, fine, "An allegorical novel tells the story of a group of buccaneers searching for a treasure on an island");
+        Book book1 = new Book("The Alchemist", true, 30, fine, "An allegorical novel tells the story of a guy searching for a treasure");
+        Book book2 = new Book("Treasure Island", true, 30, fine, "An allegorical novel tells the story of a group of buccaneers searching for a treasure on an island");
         addedBook1 = testBook.save(book1);
         addedBook2 = testBook.save(book2);
         assertNotNull(addedBook1);
@@ -46,14 +46,14 @@ public class BookRepositoryTest {
         List<Book> expectedData = Arrays.asList(addedBook1, addedBook2);
         List<Book> actualData = new ArrayList<>();
 
-       /** Iterable<Book> books = testBook.findAll();
+       /** Iterable<Book> books = testBook.findAll(); ¤ For-Each method ¤
         for (Book book : books) {
             actualData.add(book);
         } **/
 
-       // testBook.findAll().forEach(book -> actualData.add(book));
+       // testBook.findAll().forEach(book -> actualData.add(book)); ¤ Lambda method ¤
 
-        testBook.findAll().forEach(actualData::add);
+        testBook.findAll().forEach(actualData::add); // ¤ Reference method ¤
         assertEquals(expectedData, actualData);
     }
     
@@ -65,15 +65,16 @@ public class BookRepositoryTest {
         Book expectedData = addedBook1;
         assertEquals(actualData, expectedData);
     }
-   /* @Test
-    public void findByAvailableTest() {
-        Optional<Book> availableBook = testBook.findByAvailable(addedBook1.isAvailable());
-        assertTrue(availableBook.isPresent());
-    } */
+    @Test
+    void findByAvailableTest() {
+        List<Book> available = testBook.findByAvailable(true);
+        assertNotNull(available);
+        assertEquals(2, available.size());
+    }
 
     @Test
     void deleteBookByIdTest() {
-        UUID id = addedBook1.getBookId();
+        String id = addedBook1.getBookId();
         testBook.deleteById(id);
         Optional<Book> optionalBook = testBook.findById(id);
         assertFalse(optionalBook.isPresent());

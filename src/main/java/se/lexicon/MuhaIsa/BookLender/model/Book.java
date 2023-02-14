@@ -14,7 +14,7 @@ public class Book {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID bookId;
+    private String bookId;
     @Column(nullable = false)
     private String title;
     private boolean available;
@@ -26,6 +26,14 @@ public class Book {
     public Book() {
     }
 
+    public Book(String title, boolean available, int maxLoanDays, BigDecimal finePerDay, String description) {
+        this.title = title;
+        this.available = available;
+        this.maxLoanDays = maxLoanDays;
+        this.finePerDay = finePerDay;
+        this.description = description;
+    }
+
     public Book(String title, int maxLoanDays, BigDecimal finePerDay, String description) {
         this.title = title;
         this.maxLoanDays = maxLoanDays;
@@ -33,7 +41,7 @@ public class Book {
         this.description = description;
     }
 
-    public UUID getBookId() {
+    public String getBookId() {
         return bookId;
     }
 
