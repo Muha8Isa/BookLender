@@ -5,7 +5,6 @@ import se.lexicon.MuhaIsa.BookLender.model.Book;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface BookRepository extends CrudRepository<Book, String> {
     List<Book> findByAvailable(boolean availableBook);
