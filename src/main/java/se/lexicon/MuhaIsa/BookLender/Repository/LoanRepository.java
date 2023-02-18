@@ -11,7 +11,9 @@ import java.util.UUID;
 
 public interface LoanRepository extends CrudRepository<Loan, Long> {
     Optional<Loan> findByLoanTakerUserId(Integer userId);
+    List<Loan> findAllByLoanTakerUserId(Integer userId);
     Optional<Loan> findByBookBookId(String bookId);
+    List<Loan> findAllByBookBookId(String bookId);
     List<Loan> findByConcluded(Boolean concluded);
 
 

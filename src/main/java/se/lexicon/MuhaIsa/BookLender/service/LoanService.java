@@ -5,8 +5,8 @@ import se.lexicon.MuhaIsa.BookLender.dto.LoanDto;
 import java.util.List;
 
 public interface LoanService {
-    LoanDto findById(Integer loanId);
-    List<LoanDto> findByBookId(Integer bookId);
+    LoanDto findById(Long loanId);
+    List<LoanDto> findByBookId(String bookId);
     List<LoanDto> findByUserId(Integer userId);
     List<LoanDto> findByConcluded(Boolean concluded);
     List<LoanDto> findAll();
@@ -14,5 +14,5 @@ public interface LoanService {
 
     void update(LoanDto loanDto);
 
-    void delete(boolean loanId);
+    void delete(long loanId);
 }

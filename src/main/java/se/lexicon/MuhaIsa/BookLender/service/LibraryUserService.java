@@ -12,6 +12,6 @@ public interface LibraryUserService {
 
     void update(LibraryUserDto libraryUserDtoDto);
 
-    void delete(boolean userId);
+    void delete(int userId);
 
 }

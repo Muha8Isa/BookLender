@@ -8,6 +8,10 @@ import java.util.Optional;
 
 public interface BookRepository extends CrudRepository<Book, String> {
     List<Book> findByAvailable(boolean availableBook);
-    Optional<Book> findByReserved(boolean reservedBook);
+    List<Book> findByReserved(boolean reservedBook);
     List<Book> findByTitleContains(String title);
+
+    // select * from roles order by id desc;
+    List<Book> findAllByOrderByBookIdDesc();
+
 }
